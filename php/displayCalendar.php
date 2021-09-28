@@ -23,7 +23,12 @@ function displayCalendar($code)
   $content = json_decode($contentJSON, true);
 
 ?>
-  <div class="cal" id="calendar">
+  <div class="cal" data-colcade="columns: .grid-col, items: .cal-wrapper">
+    <div class="grid-col"></div>
+    <div class="grid-col"></div>
+    <div class="grid-col"></div>
+    <div class="grid-col"></div>
+
     <?php
 
     for ($day = 1; $day <= $months[$month]; $day++) {
@@ -53,11 +58,11 @@ function displayCalendar($code)
         if (is_array($odArray) && in_array($day, $odArray)) {
           $odOut = 'dooropen';
         }
-
+        // onmouseover = "openCalendar(<?php echo $day; >)"
     ?>
-        <div class="cal-wrapper cal-openable <?php echo $isToday; ?>" id="<?php echo $day; ?>" onclick="openCalendar(<?php echo $day; ?>)" onmouseover="openCalendar(<?php echo $day; ?>)">
+        <div class="cal-wrapper cal-openable <?php echo $isToday; ?>" id="<?php echo $day; ?>">
           <div class="cal-container">
-            <div class="cal-unopened">
+            <div class="cal-closed">
               <p><?php echo $day; ?></p>
             </div>
             <div class="cal-opened <?php echo $odOut; ?>">
@@ -75,8 +80,10 @@ function displayCalendar($code)
               if ($words[$i] != "br") {
                 $lockedContent .= substr(
                   str_shuffle(
-                    str_repeat("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                    , 1)
+                    str_repeat(
+                      "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+                      1
+                    )
                   ),
                   0,
                   strlen($words[$i])
@@ -85,9 +92,9 @@ function displayCalendar($code)
             }
 
             ?>
-              <div class="cal-wrapper cal-unopenable">
+              <div class="cal-wrapper cal-unopenable" id="<?php echo $day; ?>">
                 <div class="cal-container">
-                  <div class="cal-unopened">
+                  <div class="cal-closed">
                     <p class="cal-date"><?php echo $day; ?></p>
                   </div>
                   <div class="cal-opened doorclosed">

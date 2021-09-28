@@ -10,7 +10,6 @@ include './php/findCalendar.php';
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="refresh" content="3600; url=./">
 
   <title>Joke Calendar</title>
 
@@ -19,8 +18,7 @@ include './php/findCalendar.php';
   <link href="./css/font/product-sans/ProductSans-Regular.woff2" as="font" crossorigin type="font/woff2">
   <link href="./css/font/product-sans/stylesheet.css" as="stylesheet" crossorigin>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js" defer></script>
-  <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js" defer></script>
+  <script src="https://unpkg.com/colcade@0/colcade.js" defer></script>
   <script src="./js/main.js" defer></script>
 
   <link rel="stylesheet" href="./css/style.css">
@@ -43,8 +41,6 @@ include './php/findCalendar.php';
   // Fix duplicate items in odArray
   // Normalize.css
   ?>
-
-  <p id="test"></p>
 </body>
 
 </html>

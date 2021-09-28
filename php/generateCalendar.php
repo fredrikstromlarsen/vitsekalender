@@ -1,6 +1,9 @@
 <?php
 function generateCalendar($code)
 {
+  if (!is_dir("./calendar")) {
+    mkdir("./calendar", 0755, true);
+  }
   $month = date('m');
 
   // Number of days per month
@@ -24,7 +27,7 @@ function generateCalendar($code)
   $c = 0;
   for ($i = 0; $i < $max; $i++) {
     // This is needed because each and 
-    // every joke is surrounded by --lines--.
+    // every joke is surrounded by --lines--
     $calContent = explode("----------------------------------------------", preg_replace('/\r|\n/', '<br>', str_replace('"', '\'', file_get_contents('https://v2.jokeapi.dev/joke/Any?format=txt&type=single&amount=10'))));
     for ($n = 0; $n <= count($calContent) - 1; $n++) {
       $c++;

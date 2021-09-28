@@ -157,7 +157,12 @@ a:focus, a:hover {
     width: -webkit-min-content;
     width: -moz-min-content;
     width: min-content;
-    margin: 1rem auto;
+    margin: 0 auto;
+  }
+
+  .grid-col {
+    float: left;
+    width: 22rem;
   }
 
   .cal-wrapper {
@@ -172,7 +177,7 @@ a:focus, a:hover {
     height: -moz-min-content;
     height: min-content;
 
-    margin: 1rem;
+    margin: 2rem;
   }
 
   .cal-container {
@@ -186,18 +191,18 @@ a:focus, a:hover {
 
   .cal-container,
   .cal-opened,
-  .cal-unopened {
+  .cal-closed {
     height: 100%;
   }
 
-  .cal-unopened {
+  .cal-closed {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 2rem;
   }
 
-  .cal-unopened>p {
+  .cal-closed>p {
     position: relative;
 
     font-size: 4rem;
@@ -206,12 +211,12 @@ a:focus, a:hover {
     font-weight: 900;
   }
 
-  .cal-unopened>* {
+  .cal-closed>* {
     position: absolute;
     margin: auto;
   }
 
-  .today .cal-unopened p {
+  .today .cal-closed p {
     color: #fff;
     text-shadow: 0 0 0 #affc;
     animation: subtleFlicker 1s alternate infinite ease-out;

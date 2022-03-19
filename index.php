@@ -19,8 +19,9 @@ include './php/findCalendar.php';
   <link href="./css/font/product-sans/ProductSans-Regular.woff2" as="font" crossorigin type="font/woff2">
   <link href="./css/font/product-sans/stylesheet.css" as="stylesheet" crossorigin>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js" defer></script>
-  <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js" defer></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js" defer></script> -->
+  <!-- <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js" defer></script> -->
+  <script src="./js/colcade.js" defer></script>
   <script src="./js/main.js" defer></script>
 
   <link rel="stylesheet" href="./css/style.css">
@@ -40,11 +41,11 @@ include './php/findCalendar.php';
   hasCalendar();
 
   // TODO:
-  // Fix duplicate items in odArray
+  // Fix Animations on hover
+  // Set correct timezone in findCalendar when setting cookie
   // Normalize.css
   ?>
 
-  <p id="test"></p>
 </body>
 
 </html>

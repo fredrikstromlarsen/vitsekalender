@@ -1,31 +1,9 @@
-// document.cookie = 'od=' + openedDoors + '; expires=' + d;
-console.log(document.cookie);
-if (
-	console.log(
-		document.cookie.split('; ').find((row) => row.startsWith('od='))
-	)
-) {
-	console.log(
-		document.cookie
-			.split('; ')
-			.find((row) => row.startsWith('od='))
-			.split(',')
-	);
-}
-
-var msnry = new Masonry('.cal', {
-	itemSelector: '.cal-wrapper',
-	columnWidth: 0,
+var colc = new Colcade('.cal', {
+	columns: '.colcade-col',
+	items: '.cal-wrapper',
 });
 
-var calOpened = document.querySelectorAll('.cal-opened');
-console.log(calOpened);
-
-// All calopened with doorclosed class can be opened, others cant.
-
-var openedDoors = [];
-var exists;
-function getCookie() {
+function getOpenedDoors() {
 	let name = 'od=';
 	let ca = decodeURIComponent(document.cookie).split(';');
 	for (let i = 0; i < ca.length; i++) {
@@ -35,25 +13,27 @@ function getCookie() {
 		}
 		// Checks if cookie exists and has values after "od="
 		if (c.indexOf(name) == 0 && c.substring(name.length, c.length) != '') {
-			openedDoors = c.substring(name.length, c.length).splits(',');
-			return openedDoors;
+			return c.substring(name.length, c.length).split(',');
 		}
 	}
 }
-function openCalendar(i) {
-	i--;
-	calOpened[i].classList.add('dooropen');
-	calOpened[i].classList.remove('doorclosed');
-	for (n = 0; n <= openedDoors.length; n++) {
-		if (n == openedDoors[n]) {
-			exists = true;
-		} else {
-			exists = false;
-		}
-	}
-	if (!exists) {
-		openedDoors.push(i) + 1;
-	}
+
+var calOpened = document.querySelectorAll('.cal-opened');
+var openedDoors = document.cookie
+	.split('; ')
+	.find((row) => row.startsWith('od='))
+	? getOpenedDoors()
+	: [];
+
+function openCalendar(id) {
+	focusedIndex = id.replace('entry-id-', '').toString();
+	console.log(focusedIndex);
+	if (openedDoors.includes(focusedIndex)) return false;
+	openedDoors.push(focusedIndex);
+
+	document.getElementById(id).classList.remove('doorclosed');
+	document.getElementById(id).classList.add('dooropen');
+
 	let d = new Date();
 	d.setMilliseconds(0);
 	d.setSeconds(0);
@@ -61,6 +41,15 @@ function openCalendar(i) {
 	d.setHours(0);
 	d.setDate(1);
 	d.setMonth(d.getMonth() + 1);
+
+	document.cookie =
+		'od=' +
+		openedDoors +
+		'; expires=' +
+		d.toUTCString() +
+		'; path=/; SameSite=Lax;';
+
+	return true;
 }
 
 function codeUrl(code) {

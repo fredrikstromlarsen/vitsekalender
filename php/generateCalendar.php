@@ -35,7 +35,7 @@ function generateCalendar($code)
     }
     // Whoever runs the joke-database
     // does not like me being too needy.
-    sleep(0.2);
+    sleep(1);
   }
   $json = rtrim($json, ",");
   $json .= "\n}]";

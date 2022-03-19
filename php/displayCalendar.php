@@ -24,6 +24,11 @@ function displayCalendar($code)
 
 ?>
   <div class="cal" id="calendar">
+    <div class="colcade-col colcade-col--1"></div>
+    <div class="colcade-col colcade-col--2"></div>
+    <div class="colcade-col colcade-col--3"></div>
+    <div class="colcade-col colcade-col--4"></div>
+
     <?php
 
     for ($day = 1; $day <= $months[$month]; $day++) {
@@ -43,24 +48,16 @@ function displayCalendar($code)
         } else {
           $odArray = "";
         }
-        $odOut = 'doorclosed';
-
-        // Apparently, when the user hasn't opened any doors, your dumb 
-        // computer thinks that $odArray is a string, this is easily fixed
-        // by first checking to see if it is actually an array or not.
-        // If you tried debugging it yourself you'd see that it interpretes
-        // an empty array as a string, but an array with one item as an array.
-        if (is_array($odArray) && in_array($day, $odArray)) {
-          $odOut = 'dooropen';
-        }
+        if (is_array($odArray) && in_array($day, $odArray)) $odOut = 'dooropen';
+        else $odOut = 'doorclosed';
 
     ?>
-        <div class="cal-wrapper cal-openable <?php echo $isToday; ?>" id="<?php echo $day; ?>" onclick="openCalendar(<?php echo $day; ?>)" onmouseover="openCalendar(<?php echo $day; ?>)">
+        <div class="cal-wrapper cal-openable <?php echo $isToday; ?>" onmouseenter="openCalendar('entry-id-<?=$day?>')">
           <div class="cal-container">
             <div class="cal-unopened">
               <p><?php echo $day; ?></p>
             </div>
-            <div class="cal-opened <?php echo $odOut; ?>">
+            <div class="cal-opened <?=$odOut?>" id="entry-id-<?=$day?>">
               <div>
                 <span>Today's joke:</span>
                 <span><?php echo "$dayFormatted/" . date('m') . "/" . date('Y'); ?></span>
@@ -75,8 +72,10 @@ function displayCalendar($code)
               if ($words[$i] != "br") {
                 $lockedContent .= substr(
                   str_shuffle(
-                    str_repeat("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                    , 1)
+                    str_repeat(
+                      " 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+                      1
+                    )
                   ),
                   0,
                   strlen($words[$i])

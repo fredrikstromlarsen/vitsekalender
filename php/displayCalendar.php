@@ -54,7 +54,7 @@ function displayCalendar($code)
     ?>
         <div class="cal-wrapper cal-openable <?php echo $isToday; ?>" onmouseenter="openCalendar('entry-id-<?=$day?>')">
           <div class="cal-container">
-            <div class="cal-unopened">
+            <div class="cal-closed">
               <p><?php echo $day; ?></p>
             </div>
             <div class="cal-opened <?=$odOut?>" id="entry-id-<?=$day?>">
@@ -84,9 +84,9 @@ function displayCalendar($code)
             }
 
             ?>
-              <div class="cal-wrapper cal-unopenable">
+              <div class="cal-wrapper cal-unopenable" id="<?php echo $day; ?>">
                 <div class="cal-container">
-                  <div class="cal-unopened">
+                  <div class="cal-closed">
                     <p class="cal-date"><?php echo $day; ?></p>
                   </div>
                   <div class="cal-opened doorclosed">

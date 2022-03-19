@@ -10,7 +10,6 @@ include './php/findCalendar.php';
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="refresh" content="3600; url=./">
 
   <title>Joke Calendar</title>
 
@@ -45,7 +44,10 @@ include './php/findCalendar.php';
   // Set correct timezone in findCalendar when setting cookie
   // Normalize.css
   ?>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 89220b088342d845685c8c879392e4de7d0a15c6
 </body>
 
 </html>

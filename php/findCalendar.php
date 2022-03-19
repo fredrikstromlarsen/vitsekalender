@@ -1,7 +1,8 @@
 <?php
 function findCalendar()
 {
-  if (isset($_GET['cc'])) {
+  $pattern = "/^([0-9]{1,3})$/";
+  if (isset($_GET['cc']) && preg_match($pattern, $_GET['cc'])) {
     $code = substr($_GET['cc'], 0, 3);
 
     if (date('m') + 1 < 13) {
@@ -22,22 +23,30 @@ function findCalendar()
     ]);
   } else if (isset($_COOKIE['cc'])) {
     $code = substr($_COOKIE['cc'], 0, 3);
+    
   } else {
     header('location: ../');
   }
 
-  if (!isset($_COOKIE['cc']) && isset($_COOKIE['od'])) {
-    unset($_COOKIE['od']);
-    setcookie('od', null, -1, '/');
-  }
+  // if (!isset($_COOKIE['cc']) && isset($_COOKIE['od'])) {
+  //   unset($_COOKIE['od']);
+  //   setcookie('od', null, -1, '/');
+  // }
 
   if (file_exists('./calendar/' . $code . '.json')) {
     displayCalendar($code);
   } else {
+<<<<<<< HEAD
     if (isset($_COOKIE['od'])) {
       unset($_COOKIE['od']);
       // setcookie('od', null, -1, '/');
     }
+=======
+    // if (isset($_COOKIE['od'])) {
+    //   unset($_COOKIE['od']);
+    //   setcookie('od', null, -1, '/');
+    // }
+>>>>>>> 89220b088342d845685c8c879392e4de7d0a15c6
     generateCalendar($code);
   }
 }
